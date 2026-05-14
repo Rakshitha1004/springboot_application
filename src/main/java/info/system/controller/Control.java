@@ -1,0 +1,30 @@
+package info.system.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import info.system.entity.Student;
+import info.system.service.StudentService;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@RestController
+public class Control {
+
+    @Autowired
+    StudentService studentService;
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Helllooooo!";
+    }
+
+    @PostMapping("/student")
+    public Student createStudent(@RequestBody Student student) {
+
+        return studentService.saveStudent(student);
+    }
+
+}
