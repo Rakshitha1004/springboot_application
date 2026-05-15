@@ -1,5 +1,7 @@
 package info.system.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,5 +23,7 @@ public class Course {
     private String courseName;
 
     private int duration;
+
+    private List<String> skills;
 
 }
