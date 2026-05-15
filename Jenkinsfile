@@ -3,14 +3,14 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "yourdockerhubusername/course-app"
+        IMAGE_NAME = "rakshithamr10/course-app"
     }
 
     stages {
 
         stage('Clone Code') {
             steps {
-                git 'https://github.com/yourusername/repository-name.git'
+                git 'https://github.com/Rakshitha1004/springboot_application.git'
             }
         }
 
@@ -52,7 +52,7 @@ pipeline {
                 docker run -d \
                 --name course-container \
                 -p 8080:8080 \
-                yourdockerhubusername/course-app
+                rakshithamr10/course-app
                 '''
             }
         }
