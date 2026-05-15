@@ -2,18 +2,22 @@ pipeline {
 
     agent any
 
+    tools {
+        maven 'Maven'
+    }
+
     environment {
         IMAGE_NAME = "rakshithamr10/course-app"
     }
 
     stages {
 
-      stage('Clone Code') {
-        steps {
-        git branch: 'main',
-        url: 'https://github.com/Rakshitha1004/springboot_application.git'
-    }
-}
+        stage('Clone Code') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/Rakshitha1004/springboot_application.git'
+            }
+        }
 
         stage('Build Maven') {
             steps {
