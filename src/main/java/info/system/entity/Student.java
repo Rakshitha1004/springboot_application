@@ -1,5 +1,7 @@
 package info.system.entity;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +15,7 @@ public class Student {
     private String name;
     private int age;
     private String email;
+    private Set<String> topics;
 
     public Long getId() {
         return Id;
@@ -44,6 +47,14 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<String> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(Set<String> topics) {
+        this.topics = topics;
     }
 
 }
