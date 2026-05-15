@@ -8,11 +8,12 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
-            steps {
-                git 'https://github.com/Rakshitha1004/springboot_application.git'
-            }
-        }
+      stage('Clone Code') {
+        steps {
+        git branch: 'main',
+        url: 'https://github.com/Rakshitha1004/springboot_application.git'
+    }
+}
 
         stage('Build Maven') {
             steps {
