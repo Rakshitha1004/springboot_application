@@ -57,7 +57,7 @@ pipeline {
                 sh '''
                 docker run -d \
                 --name course-container \
-                -p 8080:8080 \
+                -p 8081:8080 \
                 rakshithamr10/course-app:latest
                 '''
             }
