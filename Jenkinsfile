@@ -8,6 +8,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "rakshithamr10/course-app"
+        CONTAINER_NAME = "course-container"
     }
 
     stages {
@@ -21,13 +22,13 @@ pipeline {
 
         stage('Build Maven') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $rakshithamr10/course-app .'
+                sh 'docker build -t ${IMAGE_NAME}:latest .'
             }
         }
 
@@ -42,7 +43,7 @@ pipeline {
 
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
 
-                    sh 'docker push $rakshithamr10/course-app'
+                    sh 'docker push ${IMAGE_NAME}:latest'
                 }
             }
         }
@@ -50,14 +51,14 @@ pipeline {
         stage('Deploy Container') {
             steps {
 
-                sh 'docker stop course-container || true'
-                sh 'docker rm course-container || true'
+                sh 'docker stop ${CONTAINER_NAME} || true'
+                sh 'docker rm ${CONTAINER_NAME} || true'
 
                 sh '''
                 docker run -d \
                 --name course-container \
                 -p 8080:8080 \
-                rakshithamr10/course-app
+                rakshithamr10/course-app:latest
                 '''
             }
         }
