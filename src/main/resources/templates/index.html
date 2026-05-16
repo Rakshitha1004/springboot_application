@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Spring Boot Dashboard</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <h1>Spring Boot API Dashboard</h1>
+
+            <p>
+                Interactive API Testing & Metrics
+            </p>
+
+        </div>
+
+        <!-- API GRID -->
+
+        <div class="api-grid">
+
+            <!-- HELLO -->
+
+            <div class="api-card">
+
+                <div class="top-bar">
+
+                    <div class="badge get">
+                        GET
+                    </div>
+
+                    <div class="count-box">
+
+                        Requests :
+                        <span id="helloCount">0</span>
+
+                    </div>
+
+                </div>
+
+                <h2>/hello</h2>
+
+                <p>Simple hello endpoint</p>
+
+                <button onclick="callHello()">
+                    Call API
+                </button>
+
+            </div>
+
+            <!-- STUDENT -->
+
+            <div class="api-card">
+
+                <div class="top-bar">
+
+                    <div class="badge post">
+                        POST
+                    </div>
+
+                    <div class="count-box">
+
+                        Requests :
+                        <span id="studentCount">0</span>
+
+                    </div>
+
+                </div>
+
+                <h2>/student</h2>
+
+                <textarea id="studentJson">
+{
+  "name":"Ram",
+  "email":"ram@gmail.com",
+  "age":22,
+  "topic":["spring","devops"]
+}
+                </textarea>
+
+                <button onclick="createStudent()">
+                    Send Request
+                </button>
+
+            </div>
+
+            <!-- COURSE -->
+
+            <div class="api-card">
+
+                <div class="top-bar">
+
+                    <div class="badge post">
+                        POST
+                    </div>
+
+                    <div class="count-box">
+
+                        Requests :
+                        <span id="courseCount">0</span>
+
+                    </div>
+
+                </div>
+
+                <h2>/course</h2>
+
+                <textarea id="courseJson">
+{
+  "courseName":"Spring Boot",
+  "duration":90,
+  "skills":["web","java"]
+}
+                </textarea>
+
+                <button onclick="createCourse()">
+                    Send Request
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RESPONSE SECTION -->
+
+        <div class="response-container">
+
+            <!-- RESPONSE HEADER -->
+
+            <div class="response-header">
+
+                <div class="response-title">
+                    API Response Analytics
+                </div>
+
+                <div class="endpoint-info"
+                     id="endpointInfo">
+
+                    No Request Triggered
+
+                </div>
+
+            </div>
+
+            <!-- STATS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-box">
+
+                    <span>Status</span>
+
+                    <h2 id="statusCode">-</h2>
+
+                </div>
+
+                <div class="stat-box">
+
+                    <span>Response Time</span>
+
+                    <h2 id="responseTime">-</h2>
+
+                </div>
+
+                <div class="stat-box">
+
+                    <span>Response Size</span>
+
+                    <h2 id="responseSize">-</h2>
+
+                </div>
+
+                <div class="stat-box">
+
+                    <span>Timestamp</span>
+
+                    <h2 id="timestamp">-</h2>
+
+                </div>
+
+            </div>
+
+            <!-- RESPONSE BODY -->
+
+            <pre id="response"></pre>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="/app.js"></script>
+
+</body>
+
+</html>

@@ -22,8 +22,16 @@ public class Control {
     CourseService service;
 
     @GetMapping("/hello")
-    public String hello() {
-        return "Helllooooo!";
+    public String hello() throws InterruptedException {
+        // Thread.sleep(5000); // Simulate some processing delay
+        String name = "OrderService";
+        System.out.println("Hello from " + name);
+        // Thread.sleep(5000); // Simulate some processing delay
+        String name2 = "PaymentService";
+        System.out.println("Hello from " + name2);
+        // Thread.sleep(5000); // Simulate some processing delay
+        System.out.println("Hello from " + name + " and " + name2);
+        return "Hello from " + name + " and " + name2;
     }
 
     @PostMapping("/student")
