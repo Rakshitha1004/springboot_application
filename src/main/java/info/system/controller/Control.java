@@ -5,12 +5,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import info.system.entity.Course;
+import info.system.entity.Exam;
 import info.system.entity.Student;
+import info.system.repository.ExamRepository;
 import info.system.service.CourseService;
+import info.system.service.ExamService;
 import info.system.service.StudentService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 public class Control {
@@ -46,4 +50,17 @@ public class Control {
         return service.saveCourse(c);
     }
 
+    @GetMapping("/request")
+    public String handleRequest() {
+        return "Request received successfully";
+    }
+
+    @Autowired
+    private ExamService examService;
+
+    @PostMapping("/exam")
+    public Exam saveExam(@RequestBody Exam exam) {
+
+        return examService.saveExam(exam);
+    }
 }
