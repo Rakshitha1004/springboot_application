@@ -48,9 +48,12 @@ pipeline {
             }
         }
 
-       stage('Deploy Application') {
+     stage('Deploy Application') {
     steps {
         sh '''
+        docker stop course-container mysql-container || true
+        docker rm course-container mysql-container || true
+
         docker compose down -v || true
 
         docker pull ${IMAGE_NAME}:latest
@@ -58,6 +61,6 @@ pipeline {
         docker compose up -d
         '''
     }
-    }
+}
     }
 }
