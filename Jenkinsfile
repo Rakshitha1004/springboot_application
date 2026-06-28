@@ -48,19 +48,16 @@ pipeline {
             }
         }
 
-        stage('Deploy Container') {
-            steps {
+       stage('Deploy Application') {
+    steps {
+        sh '''
+        docker compose down -v || true
 
-                sh 'docker stop ${CONTAINER_NAME} || true'
-                sh 'docker rm ${CONTAINER_NAME} || true'
+        docker pull ${IMAGE_NAME}:latest
 
-                sh '''
-                docker run -d \
-                --name course-container \
-                -p 8081:8081 \
-                rakshithamr10/course-app:latest
-                '''
-            }
-        }
+        docker compose up -d
+        '''
+    }
+    }
     }
 }
