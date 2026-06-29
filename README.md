@@ -1,3 +1,37 @@
+### Create Nginx config: On the Nginx server:
+```
+sudo vi /etc/nginx/sites-available/reverse-proxy
+```
+### Paste this
+```
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+
+    location / {
+        proxy_pass http://3.110.191.224:8081;
+        proxy_http_version 1.1;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+### Enable Configuration
+```
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/reverse-proxy /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+
+
 ### To get the count of http request
 ```
 http://localhost:8081/actuator/metrics/http.server.requests
