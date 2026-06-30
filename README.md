@@ -1,3 +1,38 @@
+### Reverse proxy using Apache2
+### Enable required modules
+```
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod headers
+sudo a2enmod rewrite
+```
+### Create virtual Host
+```
+sudo nano /etc/apache2/sites-available/springboot.conf
+```
+### Paste this 
+```
+<VirtualHost *:80>
+
+    ServerName <13.233.32.252>
+
+    ProxyPreserveHost On
+
+    ProxyPass / http://13.233.32.252:8081/
+    ProxyPassReverse / http://13.233.32.252:8081/
+
+</VirtualHost>
+```
+### Further steps
+```
+sudo a2ensite springboot.conf
+sudo a2dissite 000-default.conf
+sudo apache2ctl configtest
+sudo systemctl reload apache2
+```
+
+
+
 ### Create Nginx config: On the Nginx server:
 ```
 sudo vi /etc/nginx/sites-available/reverse-proxy
