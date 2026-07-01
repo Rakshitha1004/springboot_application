@@ -22,6 +22,16 @@ sudo nano /etc/apache2/sites-available/springboot.conf
     ProxyPassReverse / http://13.233.32.252:8081/
 
 </VirtualHost>
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+
+    # --- ADD THESE TWO LINES ---
+    ProxyPass / http://localhost:8080/
+    ProxyPassReverse / http://localhost:8080/
+    
+</VirtualHost>
 ```
 ### Further steps
 ```
